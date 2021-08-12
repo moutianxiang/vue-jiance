@@ -7,7 +7,8 @@
         <el-breadcrumb-item>客户信息新增</el-breadcrumb-item>
         </el-breadcrumb>
         <br>
-        <label>客户名称：</label><input id="custcnameadd" type="text" v-model="custaddinfo.custname" list="custlist" autocomplete="off">
+        <label>客户名称：</label>
+        <input id="custcnameadd" type="text" v-model="custaddinfo.custname" list="custlist" autocomplete="off">
         <datalist id="custlist"></datalist>
         <label>部门：</label><input id="custdepadd" type="text" v-model="custaddinfo.depname">
         <br><br>
@@ -59,6 +60,19 @@ export default {
             },
             //客户新增页面的客户名称提示框
             querycustList:function(){
+                var arr = this;
+                var data = {};
+                axios.post('getyycust', data).then(function (response) {
+                    var cust_add_options;
+                        for (var i = 0; i < response.data.length; i++) {
+                            var op=document.createElement("option");
+                            op.setAttribute("value",response.data[i].custname); 
+                             document.getElementById('custlist').appendChild(op);
+                        }
+                })
+                .catch(function (error) {
+                    
+                });
                 // var data = {};
                 // $.ajax({
                 //     type:"post",
@@ -75,6 +89,7 @@ export default {
                 //     }
                 // });
             },
+
             //提交客户新增信息
             custdialogaddsubmit:function () {
                 var arr = this;

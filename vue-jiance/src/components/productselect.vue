@@ -148,7 +148,8 @@ export default {
             },
             //产品信息修改对话框
             productmodify:function(row,index){
-                this.productinfo = row;
+                //浅拷贝
+                Object.assign(this.productinfo,row);
             },
             //产品信息删除
             productdel:function (row,index) {

@@ -137,7 +137,8 @@ export default {
             },
             //客户信息修改对话框
             custmodify:function(row,index){
-                    this.custinfo = row;
+                    //浅拷贝
+                    Object.assign(this.custinfo,row);
             },
             //客户信息删除
             custdel:function (row,index) {
