@@ -20,11 +20,15 @@
     <el-container>
       <el-aside width="20%">
           <el-menu
-                        default-active="1"
+                        default-active="/shouye"
                         class="el-menu-vertical-demo"
                        :unique-opened="true"
                        router
                         >
+                   <el-menu-item index="/shouye">
+                      <i class="el-icon-menu"></i>
+                      <span slot="title">首页</span>
+                    </el-menu-item>
                    <el-submenu index="1">
                        <template slot="title">
                            <i class="el-icon-message-solid"></i>

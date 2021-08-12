@@ -6,6 +6,7 @@
         <el-input
           size="normal"
           type="text"
+          prefix-icon="el-icon-user"
           v-model="loginForm.ygh"
           auto-complete="off"
           placeholder="请输入员工号"
@@ -15,6 +16,7 @@
         <el-input
           size="normal"
           type="password"
+          prefix-icon="el-icon-lock"
           v-model="loginForm.password"
           auto-complete="off"
           placeholder="请输入密码"
