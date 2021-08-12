@@ -3,7 +3,7 @@
         <el-col :span="8" v-for="(o, index) in 1" :key="o" :offset="index > 0 ? 2 : 0">
             <el-card :body-style="{ padding: '0px' }">
             <img src="../assets/daibanliebiao.jpg" class="image">
-            <div style="padding: 13%;">
+            <div style="padding: 10%;">
                 <el-badge :value=dbnum class="item">
                     <el-button type="warning" @click="toworkflow()">待办事项</el-button>
                 </el-badge>
