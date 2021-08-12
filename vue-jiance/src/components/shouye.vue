@@ -5,7 +5,7 @@
             <img src="../assets/daibanliebiao.jpg" class="image">
             <div style="padding: 13%;">
                 <el-badge :value=dbnum class="item">
-                    <el-button type="warning" class="button" @click="toworkflow()">待办事项</el-button>
+                    <el-button type="warning" @click="toworkflow()">待办事项</el-button>
                 </el-badge>
             </div>
             </el-card>
