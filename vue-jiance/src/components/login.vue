@@ -38,8 +38,8 @@ export default {
   data () {
     return {
       loginForm: {
-        ygh: '02',
-        password: '123456'
+        ygh: '',
+        password: ''
       }
     }
   },
