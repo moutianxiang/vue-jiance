@@ -1,7 +1,7 @@
 <template>
   <div class="loginStyle">
     <el-form :model="loginForm" class="loginContainer">
-      <h3 class="loginTitle">中方检测</h3>
+      <h3 class="loginTitle">中方检测公司</h3>
       <el-form-item prop="ygh">
         <el-input
           size="normal"
