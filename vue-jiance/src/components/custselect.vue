@@ -1,5 +1,35 @@
 <template>
 <div id="custmod" class="moddialog">
+<!--业务信息新增对话框-->
+<el-dialog title="业务新增信息"
+           :visible.sync="productaddDialogVisible"
+           :data="productaddinfo"
+           width="800px"
+           center>
+           <label>客户ID：</label><input id="addproductcid" type="text" v-model="productaddinfo.custid" disabled>
+        <label>客户名称：</label><input id="addproductcname" type="text" v-model="productaddinfo.custname" disabled>
+        <br><br>
+        <label>产品型号：</label><input id="addproductno" type="text" v-model="productaddinfo.productno">
+        <label>产品类别：</label><input id="addproductclass" type="text" v-model="productaddinfo.productclass">
+        <br><br>
+        <label>服务项目：</label><input id="addserviceitem" type="text" v-model="productaddinfo.serviceitem">
+        <label>测试标准：</label><input id="addrefstandard" type="text" v-model="productaddinfo.refstandard">
+        <br><br>
+        <label>费用(RMB)：</label><input id="addcost" type="text" v-model="productaddinfo.cost">
+        <label>样品数量(PCS)：</label><input id="addsampleqty" type="text" v-model="productaddinfo.sampleqty">
+        <br><br>
+        <label>周期(工作日)：</label><input id="addleadtime" type="text" v-model="productaddinfo.leadtime">
+        <label>税金：</label><input id="addtotal" type="text" v-model="productaddinfo.total">
+        <br><br>
+        <label>备注：</label><input id="addbak" type="text" v-model="productaddinfo.bak">
+        <label>交易金额：</label><input id="addtotal2" type="text" v-model="productaddinfo.total2">
+        <br>
+        <span slot="footer" class="dialog-footer">
+        <el-button type="success" @click="productdialogaddsubmit(productaddDialogVisible = false)">保存</el-button>
+        <el-button type="warning" @click="productdialogaddclear()">重置</el-button>
+        <el-button type="info" @click="productdialogaddclose(productaddDialogVisible = false)">取消</el-button>
+        </span>
+</el-dialog>
 <!--客户修改对话框-->
 <el-dialog title="编辑客户信息"
            :visible.sync="modDialogVisible"
@@ -37,7 +67,6 @@
         </el-breadcrumb>
         <input type="text" id="custname" v-model="sscustname" placeholder="客户名称模糊查询">
         <el-button type="primary" @click="custselect()">查询</el-button>
-        <br>
         <el-divider></el-divider>
         <template>
         <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
@@ -45,20 +74,21 @@
                   :stripe="stripe"
                   :default-sort = "{prop: 'custid', order: 'descending'}"
                   border style="width: 100%">
-            <el-table-column prop="custid" label="客户ID" sortable></el-table-column>
-            <el-table-column prop="custname" label="客户名称" sortable></el-table-column>
-            <el-table-column prop="depname" label="部门" sortable></el-table-column>
-            <el-table-column prop="company" label="公司名称" sortable></el-table-column>
-            <el-table-column prop="custlevel" label="角色"></el-table-column>
-            <el-table-column prop="gdphone" label="电话"></el-table-column>
-            <el-table-column prop="phonenum" label="手机"></el-table-column>
-            <el-table-column prop="email" label="邮箱"></el-table-column>
-            <el-table-column prop="chuanzhen" label="传真"></el-table-column>
-            <el-table-column prop="beizhu" label="备注"></el-table-column>
-            <el-table-column label="操作" width="150px">
+            <el-table-column prop="custid" label="客户ID" width="100px" v-if="showColumn.custid" sortable></el-table-column>
+            <el-table-column prop="custname" label="客户名称" v-if="showColumn.custname" sortable></el-table-column>
+            <el-table-column prop="depname" label="部门" v-if="showColumn.depname" sortable></el-table-column>
+            <el-table-column prop="company" label="公司名称" v-if="showColumn.company" sortable></el-table-column>
+            <el-table-column prop="custlevel" label="角色" v-if="showColumn.custlevel"></el-table-column>
+            <el-table-column prop="gdphone" label="电话" v-if="showColumn.gdphone"></el-table-column>
+            <el-table-column prop="phonenum" label="联系方式" v-if="showColumn.phonenum"></el-table-column>
+            <el-table-column prop="email" label="邮箱" v-if="showColumn.email"></el-table-column>
+            <el-table-column prop="chuanzhen" label="传真"  v-if="showColumn.chuanzhen"></el-table-column>
+            <el-table-column prop="beizhu" label="备注" v-if="showColumn.beizhu"></el-table-column>
+            <el-table-column label="操作" width="300px">
                 <template slot-scope="{row,$index}">
-                    <el-button size="small" @click="custmodify(row,$index,modDialogVisible = true)">编辑</el-button>
-                    <el-button size="small" @click="custdel(row,$index)">删除</el-button>
+                    <el-button size="small" @click="productadd(row,$index,productaddDialogVisible = true)">业务新增</el-button>
+                    <el-button size="small" @click="custmodify(row,$index,modDialogVisible = true)">客户编辑</el-button>
+                    <el-button size="small" @click="custdel(row,$index)">客户删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -86,10 +116,43 @@ export default {
             sscustname:"",
             custinfo:[],
             tableData:[],
+            productaddDialogVisible:false,
             modDialogVisible: false,
             currentPage:1,
             pagesize:6,
             total:0,
+            //展示的列信息
+            showColumn:{
+                 custid:true
+                ,custname:true
+                ,depname:false
+                ,company:true
+                ,custlevel:false
+                ,gdphone:false
+                ,phonenum:true
+                ,email:false
+                ,chuanzhen:false
+                ,beizhu:false
+            },
+            //新增产品信息
+            productaddinfo:{
+                    custid:""
+                    ,custname:""
+                    ,productno:""
+                    ,productclass:""
+                    ,serviceitem:""
+                    ,refstandard:""
+                    ,cost:""
+                    ,sampleqty:""
+                    ,leadtime:""
+                    ,total:""
+                    ,bak:""
+                    ,total2:""
+                    ,ygh: sessionStorage.getItem('ygh')
+                },
+            custid:"",
+            custname:"",
+            ygh:sessionStorage.getItem('ygh')
             }
         },
         mounted:function(){
@@ -159,6 +222,35 @@ export default {
                     }).catch(() => {
                     arr.$message.info('已取消删除');          
                     });
+            },
+            //业务新增信息
+            productadd:function(row,index){
+                this.productaddinfo.custid=row.custid;
+                this.productaddinfo.custname=row.custname;
+                this.custid = row.custid;
+                this.custname = row.custname;
+            },
+            //提交产品新增信息
+            productdialogaddsubmit:function () {
+                var arr = this;
+                axios.post('productadd', this.productaddinfo).then(function (response) {
+                    arr.productaddinfo = arr.$options.data().productaddinfo;
+                    return arr.$message.success('业务信息新增成功了！！！');
+                })
+                .catch(function (error) {
+                    return arr.$message.error('业务信息新增失败了！！！');
+                });
+            },
+            //重置产品新增信息
+            productdialogaddclear:function () {
+                this.productaddinfo = this.$options.data().productaddinfo;
+                this.productaddinfo.custid = this.custid;
+                this.productaddinfo.custname = this.custname;
+                this.productaddinfo.ygh = this.ygh;
+            },
+            //关闭产品新增信息
+            productdialogaddclose:function () {
+                this.productaddinfo = this.$options.data().productaddinfo;
             },
         }
 }

@@ -54,12 +54,6 @@ export default {
             }
         },
         methods:{
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            },
             //提交产品新增信息
             productdialogaddsubmit:function () {
                 var arr = this;

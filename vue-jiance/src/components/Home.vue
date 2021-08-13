@@ -57,7 +57,7 @@
                            <span>业务信息</span>
                        </template>
                        <el-menu-item index="/productselect">业务信息查询</el-menu-item>
-                       <el-menu-item index="/productadd">业务信息新增</el-menu-item>
+                       <!-- <el-menu-item index="/productadd">业务信息新增</el-menu-item> -->
                    </el-submenu>
                </el-menu>
       </el-aside>
