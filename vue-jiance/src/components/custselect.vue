@@ -120,7 +120,7 @@ export default {
         return {
             stripe:true,//是否为斑马纹 table
             sscustname:"",
-            custinfo:[],
+            custinfo:{},
             tableData:[],
             productaddDialogVisible:false,
             modDialogVisible: false,
