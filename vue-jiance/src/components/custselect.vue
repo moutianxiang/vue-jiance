@@ -4,6 +4,7 @@
 <el-dialog title="业务新增信息"
            :visible.sync="productaddDialogVisible"
            :data="productaddinfo"
+           @close="productdialogaddclose"
            width="800px"
            center>
            <label>客户ID：</label><input id="addproductcid" type="text" v-model="productaddinfo.custid" disabled>
