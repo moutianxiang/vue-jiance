@@ -53,8 +53,7 @@
         <el-breadcrumb-item>待办列表查询</el-breadcrumb-item>
         </el-breadcrumb>
         <div>
-            <el-button type="danger" v-if="ygh==='01'">不能发起流程</el-button>
-            <el-button type="danger" v-if="ygh==='02'">不能发起流程</el-button>
+            <el-button type="danger" v-if="['01','02'].includes(ygh)">不能发起流程</el-button>
             <el-button type="success" v-else @click="addDialogVisible = true">流程发起</el-button>
         </div>
         <div>

@@ -5,7 +5,8 @@ import router from './route'
 import './plugins/element.js'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://60.205.186.238:8880'
+axios.defaults.baseURL = 'http://localhost:8880'
+//axios.defaults.baseURL = 'http://60.205.186.238:8880'
 Vue.prototype.$http = axios
 
 new Vue({

@@ -51,6 +51,9 @@
         <label>邮箱：</label><input id="custmodemail" v-model="custinfo.email" type="text">
         <label>传真：</label><input id="custmodchuanzhen" v-model="custinfo.chuanzhen" type="text">
         <br><br>
+        <label>客户分类：</label><input id="custmodcustclass" v-model="custinfo.custclass" type="text">
+        <label>录入时间：</label><input id="custmodcreatetime" v-model="custinfo.createtime" type="text">
+        <br><br>
         <label>备注：</label><input id="custmodbeizhu" class="beizhuwidth" v-model="custinfo.beizhu" type="text">
         <br><br>
         <span slot="footer" class="dialog-footer">
@@ -83,6 +86,8 @@
             <el-table-column prop="gdphone" label="电话" v-if="showColumn.gdphone"></el-table-column>
             <el-table-column prop="phonenum" label="联系方式" v-if="showColumn.phonenum"></el-table-column>
             <el-table-column prop="email" label="邮箱" v-if="showColumn.email"></el-table-column>
+            <el-table-column prop="custclass" label="客户分类" v-if="showColumn.custclass"></el-table-column>
+            <el-table-column prop="createtime" label="录入时间" v-if="showColumn.createtime"></el-table-column>
             <el-table-column prop="chuanzhen" label="传真"  v-if="showColumn.chuanzhen"></el-table-column>
             <el-table-column prop="beizhu" label="备注" v-if="showColumn.beizhu"></el-table-column>
             <el-table-column label="操作" width="300px">
@@ -131,6 +136,8 @@ export default {
                 ,custlevel:false
                 ,gdphone:false
                 ,phonenum:true
+                ,custclass:true
+                ,createtime:true
                 ,email:false
                 ,chuanzhen:false
                 ,beizhu:false

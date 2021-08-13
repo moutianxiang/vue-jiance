@@ -18,6 +18,9 @@
         <label>手机：</label><input id="custshoujiadd" type="text" v-model="custaddinfo.phonenum">
         <label>邮箱：</label><input id="custyouxiangadd" type="text" v-model="custaddinfo.email">
         <br><br>
+        <label>客户分类：</label><input id="custclassadd" type="text" v-model="custaddinfo.custclass">
+        <label>录入时间：</label><input id="custcreatetimeadd" type="text" v-model="custaddinfo.createtime">
+        <br><br>
         <label>传真：</label><input id="custchuanzhenadd" type="text" v-model="custaddinfo.chuanzhen">
         <label>公司名称：</label><input id="custcompanyadd" type="text" v-model="custaddinfo.company">
         <br><br>

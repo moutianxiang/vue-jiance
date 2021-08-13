@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Login from './components/login.vue'
 import Home from './components/Home.vue'
 import shouye from './components/shouye.vue'
+import personselect from './components/personselect.vue'
+import personadd from './components/personadd.vue'
 import workflowselect from './components/workflowselect.vue'
 import userselect from './components/userselect.vue'
 import productadd from './components/productadd.vue'
@@ -22,6 +24,14 @@ export default new VueRouter({
       {
         path: '/shouye',
         component: shouye
+      },
+      {
+        path: '/personselect',
+        component: personselect
+      },
+      {
+        path: '/personadd',
+        component: personadd
       },
       {
         path: '/workflowselect',

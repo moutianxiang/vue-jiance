@@ -20,7 +20,6 @@
     <el-container>
       <el-aside width="20%">
           <el-menu
-                        default-active="/shouye"
                         class="el-menu-vertical-demo"
                        :unique-opened="true"
                        router
@@ -29,21 +28,29 @@
                       <i class="el-icon-menu"></i>
                       <span slot="title">首页</span>
                     </el-menu-item>
-                   <el-submenu index="1">
+                    <el-submenu index="1" v-if="['01','02'].includes(ygh)">
+                       <template slot="title">
+                           <i class="el-icon-setting"></i>
+                           <span>员工列表</span>
+                       </template>
+                           <el-menu-item index="/personselect">员工信息查询</el-menu-item>
+                           <el-menu-item index="/personadd">员工信息新增</el-menu-item>
+                   </el-submenu>
+                   <el-submenu index="2">
                        <template slot="title">
                            <i class="el-icon-message-solid"></i>
                            <span>待办列表</span>
                        </template>
                            <el-menu-item index="/workflowselect">待办列表查询</el-menu-item>
                    </el-submenu>
-                   <el-submenu index="2">
+                   <el-submenu index="3">
                        <template slot="title">
                            <i class="el-icon-user"></i>
                            <span>个人信息</span>
                        </template>
                        <el-menu-item index="/userselect">个人信息查询</el-menu-item>
                    </el-submenu>
-                   <el-submenu index="3">
+                   <el-submenu index="4">
                        <template slot="title">
                            <i class="el-icon-s-custom"></i>
                            <span>客户信息</span>
@@ -51,7 +58,7 @@
                        <el-menu-item index="/custselect">客户信息查询</el-menu-item>
                        <el-menu-item index="/custadd">客户信息新增</el-menu-item>
                    </el-submenu>
-                   <el-submenu index="4">
+                   <el-submenu index="5">
                        <template slot="title">
                            <i class="el-icon-document"></i>
                            <span>业务信息</span>
