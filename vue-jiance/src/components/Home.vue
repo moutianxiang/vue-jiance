@@ -39,7 +39,7 @@
                    <el-submenu index="2">
                        <template slot="title">
                            <i class="el-icon-message-solid"></i>
-                           <span>待办列表</span>
+                           <span>任务列表</span>
                        </template>
                            <el-menu-item index="/workflowselect">待办列表查询</el-menu-item>
                    </el-submenu>

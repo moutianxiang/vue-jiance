@@ -5,7 +5,6 @@
                :visible.sync="addDialogVisible"
                width="400px"
                center>
-    <br>
     <label>员工号：</label><input id="workflowaddygh" type="text" v-model="ygh" disabled>
     <br><br>
     <label>员工名称：</label><input id="workflowaddname" type="text" v-model="username" disabled>
@@ -38,7 +37,6 @@
     <div class="dialogheader">董事长审批</div>
     <label>董事长意见：</label><input id="workflowdszyj" v-model="flowdetailinfo.dszyj" v-bind:disabled="ygh!='01'">
     </div>
-    <br>
         <span slot="footer" class="dialog-footer">
         <el-button type="success" @click="workflowdialogmodsubmit(detailDialogVisible = false)">提交</el-button>
         <el-button type="info" @click="detailDialogVisible = false">取消</el-button>
@@ -49,12 +47,12 @@
     <!--待办事项查询-->
     <div id="workflowset" class="workflowresultset">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item>待办列表</el-breadcrumb-item>
+        <el-breadcrumb-item>任务列表</el-breadcrumb-item>
         <el-breadcrumb-item>待办列表查询</el-breadcrumb-item>
         </el-breadcrumb>
         <div>
             <el-button type="danger" v-if="['01','02'].includes(ygh)">不能发起流程</el-button>
-            <el-button type="success" v-else @click="addDialogVisible = true">流程发起</el-button>
+            <el-button type="success" v-else @click="procinststart(addDialogVisible = true)">流程发起</el-button>
         </div>
         <div>
             <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
@@ -63,9 +61,9 @@
                       border style="width: 100%">
                 <el-table-column prop="id_" label="ID_"></el-table-column>
                 <el-table-column prop="proc_inst_id_" label="流程实例ID"></el-table-column>
-                <el-table-column prop="name_" label="节点定义名称"></el-table-column>
+                <el-table-column prop="start_user_id_" label="发起人员工号"></el-table-column>
                 <el-table-column prop="assignee_" label="审批人"></el-table-column>
-                <el-table-column prop="create_time_" label="创建时间"></el-table-column>
+                <el-table-column prop="start_time_" label="创建时间"></el-table-column>
                 <el-table-column label="详情">
                     <template slot-scope="{row,$index}">
                         <el-button size="small" @click="ContractDetail(row,$index,detailDialogVisible = true)">详情</el-button>
@@ -128,7 +126,10 @@ export default {
             handleCurrentChange(val) {
                 this.currentPage = val;
             },
-
+            //流程发起弹框
+            procinststart:function(){
+                this.bak = this.$options.data().bak;
+            },
             //流程发起功能
             workflowdialogaddsubmit:function(){
                 var arr = this;
@@ -152,8 +153,15 @@ export default {
             //待办列表查询
             workflowselect:function(){
                 var arr = this;
+                if(this.ygh == '01'||this.ygh == '02'){
+                    var zyygh = ''
+                }
+                else{
+                    var zyygh = this.ygh
+                }
                 var data = {
-                    zhiwu:this.zhiwu
+                    zhiwu:this.zhiwu,
+                    ygh :zyygh
                     }
                 axios.post('workflowselect', data).then(function (response) {
                     arr.tableData = response.data;
