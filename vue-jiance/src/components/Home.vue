@@ -151,6 +151,10 @@ input{/*内边距和边距不再会增加它的宽度*/
     width: 250px;
 }
 
+.el-select{
+  width:250px
+}
+
 .user{
     color: greenyellow;
     font-weight: bold;

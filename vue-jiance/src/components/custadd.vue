@@ -18,7 +18,16 @@
         <label>手机：</label><input id="custshoujiadd" type="text" v-model="custaddinfo.phonenum">
         <label>邮箱：</label><input id="custyouxiangadd" type="text" v-model="custaddinfo.email">
         <br><br>
-        <label>客户分类：</label><input id="custclassadd" type="text" v-model="custaddinfo.custclass">
+        <!-- <label>客户分类：</label><input id="custclassadd" type="text" v-model="custaddinfo.custclass"> -->
+        <label>客户分类：</label>
+        <el-select id="custclassadd" type="text" v-model="custaddinfo.custclass">
+            <el-option
+            v-for="item in custclasss"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+            </el-option>
+        </el-select>
         <label>录入时间：</label><input id="custcreatetimeadd" type="text" v-model="custaddinfo.createtime">
         <br><br>
         <label>传真：</label><input id="custchuanzhenadd" type="text" v-model="custaddinfo.chuanzhen">
@@ -48,7 +57,16 @@ export default {
                 ,company:""
                 ,beizhu:""
                 ,ygh: sessionStorage.getItem('ygh')
-            }
+            },
+            custclasss:[
+                {
+                value: '意向客户',
+                label: '意向客户'
+                }, {
+                value: '成交客户',
+                label: '成交客户'
+                }
+            ]
         }
     },
     mounted:function(){

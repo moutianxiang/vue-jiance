@@ -38,7 +38,6 @@
            width="800px"
            center>
         <input id="custmodcustid" v-model="custinfo.custid" type="text" style="display: none">
-        <br><br>
         <label>客户名称：</label><input id="custmodcustname" v-model="custinfo.custname" type="text">
         <label>部门：</label><input id="custmoddepname" v-model="custinfo.depname" type="text">
         <br><br>
@@ -51,7 +50,16 @@
         <label>邮箱：</label><input id="custmodemail" v-model="custinfo.email" type="text">
         <label>传真：</label><input id="custmodchuanzhen" v-model="custinfo.chuanzhen" type="text">
         <br><br>
-        <label>客户分类：</label><input id="custmodcustclass" v-model="custinfo.custclass" type="text">
+        <!-- <label>客户分类：</label><input id="custmodcustclass" v-model="custinfo.custclass" type="text"> -->
+        <label>客户分类：</label>
+        <el-select id="custmodcustclass" v-model="custinfo.custclass" type="text" @change="$forceUpdate()">
+            <el-option
+            v-for="item in custclasss"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+            </el-option>
+        </el-select>
         <label>录入时间：</label><input id="custmodcreatetime" v-model="custinfo.createtime" type="text">
         <br><br>
         <label>备注：</label><input id="custmodbeizhu" class="beizhuwidth" v-model="custinfo.beizhu" type="text">
@@ -127,6 +135,16 @@ export default {
             currentPage:1,
             pagesize:6,
             total:0,
+            //客户分类
+            custclasss:[
+                {
+                value: '意向客户',
+                label: '意向客户'
+                }, {
+                value: '成交客户',
+                label: '成交客户'
+                }
+            ],
             //展示的列信息
             showColumn:{
                  custid:true
