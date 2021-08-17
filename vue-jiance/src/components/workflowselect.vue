@@ -42,8 +42,6 @@
         <el-button type="info" @click="detailDialogVisible = false">取消</el-button>
         </span>
     </el-dialog>
-<!--待办事项页面-->
-<div>
     <!--待办事项查询-->
     <div id="workflowset" class="workflowresultset">
         <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -88,7 +86,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </template>
 
@@ -136,10 +133,12 @@ export default {
                 var ygh = this.ygh;
                 var name = this.username;
                 var bak = this.bak;
+                var nodename = '0';
                 var data = {
                     ygh:ygh
                     ,name:name
                     ,bak:bak
+                    ,nodename:nodename
                 };
                 axios.post('startProcess', data).then(function (response) {
                     arr.workflowselect();
@@ -202,8 +201,10 @@ export default {
             tongguo:function (row,index) {
                 var arr = this;
                 var taskid = row.id_;
+                var procinstid = row.proc_inst_id_;
                 var data = {
                     taskid : taskid
+                    ,procinstid : procinstid
                 }
                 axios.post('Approvalsuccess', data).then(function (response) {
                     arr.workflowselect();
@@ -217,8 +218,10 @@ export default {
             jujue:function (row,index) {
                 var arr = this;
                 var taskid = row.id_;
+                var procinstid = row.proc_inst_id_;
                 var data = {
                     taskid : taskid
+                    ,procinstid : procinstid
                 }
                 axios.post('Approvalfailed', data).then(function (response) {
                     arr.workflowselect();

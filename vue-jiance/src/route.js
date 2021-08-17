@@ -6,6 +6,7 @@ import shouye from './components/shouye.vue'
 import personselect from './components/personselect.vue'
 import personadd from './components/personadd.vue'
 import workflowselect from './components/workflowselect.vue'
+import taskselect from './components/taskselect.vue'
 import userselect from './components/userselect.vue'
 import productadd from './components/productadd.vue'
 import productselect from './components/productselect.vue'
@@ -36,6 +37,10 @@ export default new VueRouter({
       {
         path: '/workflowselect',
         component: workflowselect
+      },
+      {
+        path: '/taskselect',
+        component: taskselect
       },
       {
         path: '/userselect',

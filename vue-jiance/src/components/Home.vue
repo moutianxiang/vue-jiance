@@ -42,6 +42,7 @@
                            <span>任务列表</span>
                        </template>
                            <el-menu-item index="/workflowselect">待办列表查询</el-menu-item>
+                           <el-menu-item v-show="ygh!=='02'&&ygh!=='01'" index="/taskselect">所有任务查询</el-menu-item>
                    </el-submenu>
                    <el-submenu index="3">
                        <template slot="title">
