@@ -27,11 +27,11 @@ export default {
         ygh: sessionStorage.getItem('ygh'),
     }
   },
-    mounted:function(){
+    mounted(){
             this.workflowselect();
         },
   methods: {
-    workflowselect:function(){
+    workflowselect(){
                 var arr = this;
                 if(this.ygh == '01'||this.ygh == '02'){
                     var zyygh = ''
@@ -50,7 +50,7 @@ export default {
                     console.log(error);
                 });
             },
-    toworkflow:function(){
+    toworkflow(){
         this.$router.push('/workflowselect')
     },
   }

@@ -78,7 +78,7 @@
         <el-breadcrumb-item>客户信息查询</el-breadcrumb-item>
         </el-breadcrumb>
         <input type="text" id="custname" v-model="sscustname" placeholder="客户名称模糊查询">
-        <el-button type="primary" @click="custselect()">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="custselect()">查询</el-button>
         <el-divider></el-divider>
         <template>
         <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
@@ -98,11 +98,11 @@
             <el-table-column prop="createtime" label="录入时间" v-if="showColumn.createtime"></el-table-column>
             <el-table-column prop="chuanzhen" label="传真"  v-if="showColumn.chuanzhen"></el-table-column>
             <el-table-column prop="beizhu" label="备注" v-if="showColumn.beizhu"></el-table-column>
-            <el-table-column label="操作" width="300px">
+            <el-table-column label="操作" width="350px">
                 <template slot-scope="{row,$index}">
-                    <el-button size="small" @click="productadd(row,$index,productaddDialogVisible = true)">业务新增</el-button>
-                    <el-button size="small" @click="custmodify(row,$index,modDialogVisible = true)">客户编辑</el-button>
-                    <el-button size="small" @click="custdel(row,$index)">客户删除</el-button>
+                    <el-button size="mini" icon="el-icon-circle-plus-outline" @click="productadd(row,$index,productaddDialogVisible = true)">业务新增</el-button>
+                    <el-button size="mini" icon="el-icon-edit" @click="custmodify(row,$index,modDialogVisible = true)">客户编辑</el-button>
+                    <el-button size="mini" icon="el-icon-delete" @click="custdel(row,$index)">客户删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -181,7 +181,7 @@ export default {
             ygh:sessionStorage.getItem('ygh')
             }
         },
-        mounted:function(){
+        mounted(){
             this.custselect();
         },
         methods:{
@@ -199,7 +199,7 @@ export default {
             },
 
             //客户信息提交修改
-            custdialogmodsubmit:function (){
+            custdialogmodsubmit (){
                 var arr = this;
                 axios.post('custmod', this.custinfo).then(function (response) {
                     arr.custselect();
@@ -210,7 +210,7 @@ export default {
                 });
             },
             //客户信息查询
-            custselect:function () {
+            custselect () {
                 var arr = this;
                 var data = {
                     custname: this.sscustname
@@ -225,12 +225,12 @@ export default {
                 });
             },
             //客户信息修改对话框
-            custmodify:function(row,index){
+            custmodify(row,index){
                     //浅拷贝
                     Object.assign(this.custinfo,row);
             },
             //客户信息删除
-            custdel:function (row,index) {
+            custdel (row,index) {
                 var arr = this;
                 this.$confirm('此操作将永久删除该客户信息, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -250,14 +250,14 @@ export default {
                     });
             },
             //业务新增信息
-            productadd:function(row,index){
+            productadd(row,index){
                 this.productaddinfo.custid=row.custid;
                 this.productaddinfo.custname=row.custname;
                 this.custid = row.custid;
                 this.custname = row.custname;
             },
             //提交产品新增信息
-            productdialogaddsubmit:function () {
+            productdialogaddsubmit () {
                 var arr = this;
                 axios.post('productadd', this.productaddinfo).then(function (response) {
                     arr.productaddinfo = arr.$options.data().productaddinfo;
@@ -268,14 +268,14 @@ export default {
                 });
             },
             //重置产品新增信息
-            productdialogaddclear:function () {
+            productdialogaddclear () {
                 this.productaddinfo = this.$options.data().productaddinfo;
                 this.productaddinfo.custid = this.custid;
                 this.productaddinfo.custname = this.custname;
                 this.productaddinfo.ygh = this.ygh;
             },
             //关闭产品新增信息
-            productdialogaddclose:function () {
+            productdialogaddclose () {
                 this.productaddinfo = this.$options.data().productaddinfo;
             },
         }

@@ -64,13 +64,13 @@
                 <el-table-column prop="start_time_" label="创建时间"></el-table-column>
                 <el-table-column label="详情">
                     <template slot-scope="{row,$index}">
-                        <el-button size="small" @click="ContractDetail(row,$index,detailDialogVisible = true)">详情</el-button>
+                        <el-button type="info" size="mini" icon="el-icon-info" @click="ContractDetail(row,$index,detailDialogVisible = true)">详情</el-button>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" width="150px">
+                <el-table-column label="操作" width="200px">
                     <template slot-scope="{row,$index}">
-                        <el-button size="small" @click="tongguo(row,$index)">通过</el-button>
-                        <el-button size="small" @click="jujue(row,$index)">回退</el-button>
+                        <el-button type="success" size="mini" icon="el-icon-check" @click="tongguo(row,$index)">通过</el-button>
+                        <el-button type="danger" size="mini" icon="el-icon-close" @click="jujue(row,$index)">回退</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -107,7 +107,7 @@ export default {
             total:0,
             }
         },
-        mounted:function(){
+        mounted(){
             this.workflowselect();
         },
         methods:{
@@ -124,11 +124,11 @@ export default {
                 this.currentPage = val;
             },
             //流程发起弹框
-            procinststart:function(){
+            procinststart(){
                 this.bak = this.$options.data().bak;
             },
             //流程发起功能
-            workflowdialogaddsubmit:function(){
+            workflowdialogaddsubmit(){
                 var arr = this;
                 var ygh = this.ygh;
                 var name = this.username;
@@ -150,7 +150,7 @@ export default {
             },
 
             //待办列表查询
-            workflowselect:function(){
+            workflowselect(){
                 var arr = this;
                 if(this.ygh == '01'||this.ygh == '02'){
                     var zyygh = ''
@@ -172,7 +172,7 @@ export default {
             },
 
             //流程详情
-            ContractDetail:function (row,index) {
+            ContractDetail (row,index) {
                 var arr = this;
                 var procinstid = row.proc_inst_id_;
                 var data = {
@@ -186,7 +186,7 @@ export default {
                 });
             },
             //流程详情提交
-            workflowdialogmodsubmit:function(){
+            workflowdialogmodsubmit(){
                 var arr = this;
                 var data = this.flowdetailinfo;
                 axios.post('workflowmodsubmit', data).then(function (response) {
@@ -198,7 +198,7 @@ export default {
             },
 
             //审批通过
-            tongguo:function (row,index) {
+            tongguo (row,index) {
                 var arr = this;
                 var taskid = row.id_;
                 var procinstid = row.proc_inst_id_;
@@ -215,7 +215,7 @@ export default {
                 });
             },
             //审批拒绝
-            jujue:function (row,index) {
+            jujue (row,index) {
                 var arr = this;
                 var taskid = row.id_;
                 var procinstid = row.proc_inst_id_;

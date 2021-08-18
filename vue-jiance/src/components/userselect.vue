@@ -46,7 +46,7 @@ export default {
                }
             }
         },
-        mounted:function (){
+        mounted (){
             this.personselect()
         },
         methods:{
@@ -57,7 +57,7 @@ export default {
                 console.log(key, keyPath);
             },
             //用户信息查询
-             personselect:function(){
+             personselect(){
                  var arr = this;
                 axios.post('userselect', this.userinfo).then(function (response) {
                     arr.personlist = response.data;
@@ -68,7 +68,7 @@ export default {
             },
 
             //用户信息提交修改
-            persondialogselectsubmit:function (){
+            persondialogselectsubmit (){
                 var arr = this;
                 axios.post('personmod', this.personlist).then(function (response) {
                     return arr.$message.success('用户信息修改成功了！！！');

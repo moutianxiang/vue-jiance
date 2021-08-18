@@ -55,7 +55,7 @@ export default {
         },
         methods:{
             //提交产品新增信息
-            productdialogaddsubmit:function () {
+            productdialogaddsubmit () {
                 var arr = this;
                 axios.post('productadd', this.productaddinfo).then(function (response) {
                     arr.productaddinfo = arr.$options.data().productaddinfo;
@@ -66,7 +66,7 @@ export default {
                 });
             },
             //重置产品新增信息
-            productdialogaddclose:function () {
+            productdialogaddclose () {
                 this.productaddinfo = this.$options.data().productaddinfo;
             },
         }

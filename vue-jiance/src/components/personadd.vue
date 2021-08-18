@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     //用户信息提交新增
-            persondialogselectsubmit:function (){
+            persondialogselectsubmit (){
                 var arr = this;
                 axios.post('personinsert', this.personlist).then(function (response) {
                     arr.personlist = arr.$options.data().personlist;
@@ -69,7 +69,7 @@ export default {
                 });
             },
             //用户信息重置
-            persondialogselectclear:function(){
+            persondialogselectclear(){
                 this.personlist = this.$options.data().personlist;
             },
   }

@@ -40,7 +40,7 @@
         <el-breadcrumb-item>员工信息查询</el-breadcrumb-item>
         </el-breadcrumb>
         <input type="text" id="username" v-model="ssusername" placeholder="员工名称模糊查询">
-        <el-button type="primary" @click="personselect()">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="personselect()">查询</el-button>
         <br>
         <el-divider></el-divider>
         <template>
@@ -63,10 +63,10 @@
                 <el-table-column prop="email" label="邮箱" v-if="showColumn.email"></el-table-column>
                 <el-table-column prop="beizhu" label="备注" v-if="showColumn.beizhu"></el-table-column>
                 <el-table-column prop="passwd" label="密码" v-if="showColumn.passwd"></el-table-column>
-                <el-table-column fixed="right" label="操作" width="150px">
+                <el-table-column fixed="right" label="操作" width="200px">
                     <template slot-scope="{row,$index}">
-                        <el-button size="small" @click="personmodify(row,$index,modDialogVisible = true)">编辑</el-button>
-                        <el-button size="small" @click="persondel(row,$index)">删除</el-button>
+                        <el-button size="mini" icon="el-icon-edit" @click="personmodify(row,$index,modDialogVisible = true)">编辑</el-button>
+                        <el-button size="mini" icon="el-icon-delete" @click="persondel(row,$index)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -117,7 +117,7 @@ export default {
             },
             }
         },
-        mounted:function(){
+        mounted(){
             this.personselect();
         },
         methods:{
@@ -135,7 +135,7 @@ export default {
             },
 
             //员工信息查询
-            personselect:function(){
+            personselect(){
                 var arr = this;
                 var data = {
                     username: this.ssusername
@@ -149,7 +149,7 @@ export default {
                 });
             },
             //员工信息提交修改
-            personmoddialogsubmit:function (){
+            personmoddialogsubmit (){
                  var arr = this;
                 axios.post('personmod', arr.personinfo).then(function (response) {
                     arr.personselect();
@@ -160,12 +160,12 @@ export default {
                 });
             },
             //员工信息修改对话框
-            personmodify:function(row,index){
+            personmodify(row,index){
                 //浅拷贝
                 Object.assign(this.personinfo,row);
             },
             //员工信息删除
-            persondel:function (row,index) {
+            persondel (row,index) {
                 var arr = this;
                 this.$confirm('此操作将永久删除该员工信息, 是否继续?', '提示', {
                     confirmButtonText: '确定',

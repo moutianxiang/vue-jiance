@@ -69,7 +69,7 @@ export default {
             ]
         }
     },
-    mounted:function(){
+    mounted(){
             this.querycustList();
         },
         methods:{
@@ -80,7 +80,7 @@ export default {
                 console.log(key, keyPath);
             },
             //客户新增页面的客户名称提示框
-            querycustList:function(){
+            querycustList(){
                 var arr = this;
                 var data = {};
                 axios.post('getyycust', data).then(function (response) {
@@ -97,7 +97,7 @@ export default {
             },
 
             //提交客户新增信息
-            custdialogaddsubmit:function () {
+            custdialogaddsubmit () {
                 var arr = this;
                 axios.post('custadd', this.custaddinfo).then(function (response) {
                     arr.custaddinfo = arr.$options.data().custaddinfo;
@@ -108,7 +108,7 @@ export default {
                 });
             },
             //重置客户新增信息
-            custdialogaddclose:function (formName) {
+            custdialogaddclose (formName) {
                 this.custaddinfo = this.$options.data().custaddinfo;
             }
         }

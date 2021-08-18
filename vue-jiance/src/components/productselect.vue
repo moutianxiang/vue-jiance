@@ -39,7 +39,7 @@
         <el-breadcrumb-item>业务信息查询</el-breadcrumb-item>
         </el-breadcrumb>
         <input type="text" id="prodcustname" v-model="prodcustname" placeholder="客户名称模糊查询">
-        <el-button type="primary" @click="productselect()">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="productselect()">查询</el-button>
         <br>
         <el-divider></el-divider>
         <template>
@@ -61,14 +61,14 @@
                 <el-table-column prop="total" label="税金"></el-table-column>
                 <el-table-column prop="total2" label="交易金额"></el-table-column>
                 <el-table-column prop="bak" label="备注"></el-table-column>
-                <el-table-column fixed="right" label="操作" width="150px">
+                <el-table-column fixed="right" label="操作" width="200px">
                     <template slot-scope="{row,$index}">
-                        <el-button size="small" @click="productmodify(row,$index,modDialogVisible = true)">编辑</el-button>
-                        <el-button size="small" @click="productdel(row,$index)">删除</el-button>
-                        <el-button size="small" @click="doPublicContract(row,$index)">生成公账合同</el-button>
-                        <el-button size="small" @click="doPrivateContract(row,$index)">生成私账合同</el-button>
+                        <el-button size="mini" icon="el-icon-edit" @click="productmodify(row,$index,modDialogVisible = true)">编辑</el-button>
+                        <el-button size="mini" icon="el-icon-delete" @click="productdel(row,$index)">删除</el-button>
+                        <el-button size="mini" icon="el-icon-upload2" @click="doPublicContract(row,$index)">生成公账合同</el-button>
+                        <el-button size="mini" icon="el-icon-upload2" @click="doPrivateContract(row,$index)">生成私账合同</el-button>
                         <el-link :href="'http://60.205.186.238:8880'+'/download/'+row.productid" :underline="false">
-                        <el-button size="small">下载合同</el-button>
+                        <el-button size="mini" icon="el-icon-download">下载合同</el-button>
                         </el-link>
                     </template>
                 </el-table-column>
@@ -103,7 +103,7 @@ export default {
             total:0,
             }
         },
-        mounted:function(){
+        mounted(){
             this.productselect();
         },
         methods:{
@@ -121,7 +121,7 @@ export default {
             },
 
             //产品信息查询
-            productselect:function(){
+            productselect(){
                 var arr = this;
                 var data = {
                     prodcustname: this.prodcustname
@@ -136,7 +136,7 @@ export default {
                 });
             },
             //产品信息提交修改
-            productmoddialogsubmit:function (){
+            productmoddialogsubmit (){
                  var arr = this;
                 axios.post('productmod', this.productinfo).then(function (response) {
                     arr.productselect();
@@ -147,12 +147,12 @@ export default {
                 });
             },
             //产品信息修改对话框
-            productmodify:function(row,index){
+            productmodify(row,index){
                 //浅拷贝
                 Object.assign(this.productinfo,row);
             },
             //产品信息删除
-            productdel:function (row,index) {
+            productdel (row,index) {
                 var arr = this;
                 this.$confirm('此操作将永久删除该产品信息, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -172,7 +172,7 @@ export default {
                     });
             },
             //生成公账合同
-            doPublicContract:function (row,index) {
+            doPublicContract (row,index) {
                 var arr = this;
                 var data = row;
                 data["ygh"] = sessionStorage.getItem('ygh');
@@ -184,7 +184,7 @@ export default {
                 });
             },
             //生成私账合同
-            doPrivateContract:function (row,index) {
+            doPrivateContract (row,index) {
                 var arr = this;
                 var data = row;
                 data["ygh"] = sessionStorage.getItem('ygh');
@@ -196,7 +196,7 @@ export default {
                 });
             },
             //合同下载
-            // download:function(row,index){
+            // download(row,index){
             //     var url = '/download/'+row.productid;
             //     axios.get(url).then(function (response) { 
             //     })

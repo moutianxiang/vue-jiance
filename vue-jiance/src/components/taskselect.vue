@@ -29,10 +29,10 @@
                 <el-table-column prop="bak" label="备注"></el-table-column>
                 <el-table-column prop="ceoyj" label="CEO意见"></el-table-column>
                 <el-table-column prop="dszyj" label="董事长意见"></el-table-column>
-                <el-table-column prop="nodename" label="流程节点"></el-table-column>
+                <el-table-column prop="nodename" :formatter="nodenamefmt" label="流程节点"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="{row,$index}">
-                        <el-button size="small" @click="flowDetail(row,$index,detailDialogVisible = true)">流程图</el-button>
+                        <el-button size="medium" icon="el-icon-picture" @click="flowDetail(row,$index,detailDialogVisible = true)">流程图</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -69,7 +69,7 @@ export default {
             active:0,
     }
   },
-  mounted:function(){
+  mounted(){
             this.workflowselect();
         },
   methods: {
@@ -86,7 +86,7 @@ export default {
                 this.currentPage = val;
             },
             //任务列表查询
-            workflowselect:function(){
+            workflowselect(){
                 var arr = this;
                 var data = {
                     ygh :this.ygh
@@ -99,8 +99,20 @@ export default {
                     console.log(error);
                 });
             },
+            //流程节点名称
+            nodenamefmt(row,column){
+                if (row.nodename === 0){
+                    return "员工审批"
+                }
+                else if(row.nodename === 1){
+                    return "CEO审批"
+                }
+                else{
+                    return "董事长审批"
+                }
+            },
             //流程图展示
-            flowDetail:function(row,index){
+            flowDetail(row,index){
                 this.active = row.nodename;
             },
         }

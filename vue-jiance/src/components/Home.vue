@@ -22,6 +22,9 @@
           <el-menu
                         class="el-menu-vertical-demo"
                        :unique-opened="true"
+                       background-color="#545c64"
+                      text-color="#fff"
+                      active-text-color="#ffd04b"
                        router
                         >
                    <el-menu-item index="/shouye">
@@ -107,7 +110,7 @@ export default {
       this.nowDate = `${year}/${month}/${day} ${hour}:${minute}:${second} ${weekArr[week]}`;
     },
     //退出功能
-    quit:function(){
+    quit(){
       sessionStorage.removeItem("ygh")
       sessionStorage.removeItem("username")
       sessionStorage.removeItem("zhiwu")
@@ -181,7 +184,7 @@ input{/*内边距和边距不再会增加它的宽度*/
   }
 
   .el-aside {
-    background-color: white;
+    background-color: #545c64;
     color: #333;
     text-align: center;
     line-height: 200px;
