@@ -176,7 +176,7 @@ input{/*内边距和边距不再会增加它的宽度*/
     float: right;
 }
 
-.el-header, .el-footer {
+.el-header {
     background-color: #2992DA;
     color: #fff;
     text-align: center;

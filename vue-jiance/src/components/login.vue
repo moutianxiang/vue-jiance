@@ -30,6 +30,9 @@
         >登录</el-button
       >
     </el-form>
+    <el-footer>
+      版权所有 &copy; 深圳中方检测公司
+  </el-footer>
   </div>
 </template>
 
@@ -60,24 +63,26 @@ export default {
 </script>
 
 <style>
+.el-footer {
+    color: #fff;
+    text-align: center;
+  }
+
 .loginStyle {
-  display: flex;
-  justify-content: center;
+  display: inline-block;
   align-items: center;
   background-image: url('../assets/login.jpg');
-  background-size: 100% 100%;
-  height: 100%;
+  width: 100%;
   background-size: cover;
+  overflow: auto !important;
 }
 .loginContainer {
   border-radius: 15px;
-  background-clip: padding-box;
-  margin: 180px auto;
+  margin: 10.7% auto;
   width: 350px;
   padding: 15px 35px 15px 35px;
   background: #fff;
   border: 1px solid #eaeaea;
-  box-shadow: 0 0 25px #cac6c6;
 }
 
 .loginTitle {
