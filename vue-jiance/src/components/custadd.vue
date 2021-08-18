@@ -94,21 +94,6 @@ export default {
                 .catch(function (error) {
                     
                 });
-                // var data = {};
-                // $.ajax({
-                //     type:"post",
-                //     url:"/getyycust",
-                //     contentType:"application/json",
-                //     data:JSON.stringify(data),
-                //     dataType:"json",
-                //     success:function(custlist) {
-                //         var cust_add_options;
-                //         for (var i = 0; i < custlist.length; i++) {
-                //             cust_add_options += '<option value="' + custlist[i].custname + '">' + custlist[i].custname + '</option>';
-                //         }
-                //         $("datalist#custlist").append(cust_add_options);
-                //     }
-                // });
             },
 
             //提交客户新增信息
