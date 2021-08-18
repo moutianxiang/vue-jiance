@@ -26,6 +26,7 @@
         size="normal"
         type="primary"
         style="width: 100%;"
+        native-type="submit"
         @click="submitLogin()"
         >登录</el-button
       >
